@@ -7,7 +7,8 @@
 ![Kubectl get pods/svc Image](https://github.com/EmekaMomodu/metrics-dashboard/blob/main/answer-img/kubectl-get-pods-svc.png "Kubectl get pods/svc")
 
 ## Setup the Jaeger and Prometheus source
-*TODO:* Expose Grafana to the internet and then setup Prometheus as a data source. Provide a screenshot of the home page after logging into Grafana.
+*DONE:* Expose Grafana to the internet and then setup Prometheus as a data source. Provide a screenshot of the home page after logging into Grafana.
+![Grafana Home Page Image](https://github.com/EmekaMomodu/metrics-dashboard/blob/main/answer-img/grafana-home-page.png "Grafana Home Page")
 
 ## Create a Basic Dashboard
 *TODO:* Create a dashboard in Grafana that shows Prometheus as a source. Take a screenshot and include it here.
