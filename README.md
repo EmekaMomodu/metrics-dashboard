@@ -4,7 +4,7 @@
 
 *DONE:* run `kubectl` command to show the running pods and services for all components. Take a screenshot of the output and include it here to verify the installation
 
-![alt text](https://github.com/EmekaMomodu/metrics-dashboard/answer-img/kubectl-get-pods-svc.png "Kubectl get pods/svc")
+![Kubectl get pods/svc Image](https://github.com/EmekaMomodu/metrics-dashboard/blob/main/answer-img/kubectl-get-pods-svc.png "Kubectl get pods/svc")
 
 ## Setup the Jaeger and Prometheus source
 *TODO:* Expose Grafana to the internet and then setup Prometheus as a data source. Provide a screenshot of the home page after logging into Grafana.
