@@ -17,18 +17,30 @@
 ## Describe SLO/SLI
 *DONE:* Describe, in your own words, what the SLIs are, based on an SLO of *monthly uptime* and *request response time*.
 
-SLIs are indicators that let us keep track of our SLOs, whether they are being met or not. 
-
-For an SLO of  *monthly uptime*, more particular the SLO would be;  "monthly uptime of 99.999%.".
+For an SLO of  *monthly uptime*, more particularly the SLO would be;  "monthly uptime of 99.999%".
 This implies that our service should be up and running 99.999% of time in a month.
-The SLI would be to evaluate the time for which the service is in a healthy state, i.e evaluate the error rates in 
-order to know if the uptime in the last month was the expected. This value is the SLI.
+The SLI would be the result from evaluating the time for which the service is in a healthy state, i.e. evaluate the error rates. 
+This value gotten from the error rate is the SLI.
 
-For an SLO of *request response time*,  more particular the SLO would be;  "request response time of 1000ms".
-It means we expect each request response (in average) must be 1000ms. The SlI for this would be measure latency.
+For an SLO of *request response time*, more particularly the SLO would be;  "request response time of less than 1000ms".
+It means we expect each request response must be 1000ms or less. The SlI for this would be the measure of latency
+of the request response time, whose value should be 1000ms or less.
 
 ## Creating SLI metrics.
-*TODO:* It is important to know why we want to measure certain metrics for our customer. Describe in detail 5 metrics to measure these SLIs. 
+*DONE:* It is important to know why we want to measure certain metrics for our customer. Describe in detail 5 metrics to measure these SLIs.
+
+1. For Latency SLO; The metric to measure the SLI will be the time a request takes to complete, which could be done by 
+tracing the time each request takes to complete and computing the average.
+
+2. For uptime SLO; The metric to measure the SLI will be the number of error messages we are seeing in the period of time
+i.e. the error rate, this value indicates if we reached the SLO.
+
+3. For saturation SLO; The metric to measure the SLI will be the amount of memory consumed by the service, or
+the amount of cpu utilisation of the service.
+
+4. For Network Capacity SLO; The metric to measure the SLI will be the average bandwidth of the service network.
+
+5. For traffic SLO; The metric to measure the SLI will be the number of requests processed successfully in a specific period of time.
 
 ## Create a Dashboard to measure our SLIs
 *TODO:* Create a dashboard to measure the uptime of the frontend and backend services We will also want to measure to measure 40x and 50x errors. Create a dashboard that show these values over a 24 hour period and take a screenshot.
