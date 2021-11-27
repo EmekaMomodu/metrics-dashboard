@@ -15,7 +15,17 @@
 ![Grafana Dashboard Prometheus Datasource Image](https://github.com/EmekaMomodu/metrics-dashboard/blob/main/answer-img/grafana-dashboard-with-prometheus-datasource.png "Grafana Dashboard Prometheus Datasource")
 
 ## Describe SLO/SLI
-*TODO:* Describe, in your own words, what the SLIs are, based on an SLO of *monthly uptime* and *request response time*.
+*DONE:* Describe, in your own words, what the SLIs are, based on an SLO of *monthly uptime* and *request response time*.
+
+SLIs are indicators that let us keep track of our SLOs, whether they are being met or not. 
+
+For an SLO of  *monthly uptime*, more particular the SLO would be;  "monthly uptime of 99.999%.".
+This implies that our service should be up and running 99.999% of time in a month.
+The SLI would be to evaluate the time for which the service is in a healthy state, i.e evaluate the error rates in 
+order to know if the uptime in the last month was the expected. This value is the SLI.
+
+For an SLO of *request response time*,  more particular the SLO would be;  "request response time of 1000ms".
+It means we expect each request response (in average) must be 1000ms. The SlI for this would be measure latency.
 
 ## Creating SLI metrics.
 *TODO:* It is important to know why we want to measure certain metrics for our customer. Describe in detail 5 metrics to measure these SLIs. 
