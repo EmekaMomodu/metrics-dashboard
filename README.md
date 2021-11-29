@@ -38,7 +38,7 @@ i.e. the error rate, this value indicates if we reached the SLO.
 3. For saturation SLO; The metric to measure the SLI will be the amount of memory consumed by the service, or
 the amount of cpu utilisation of the service.
 
-4. For Network Capacity SLO; The metric to measure the SLI will be the average bandwidth of the service network.
+4. For Network Capacity SLO; The metric to measure the SLI will be the average bandwidth of the network.
 
 5. For traffic SLO; The metric to measure the SLI will be the number of requests processed successfully in a specific period of time.
 
