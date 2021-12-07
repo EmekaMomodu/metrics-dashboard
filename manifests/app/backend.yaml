@@ -2,6 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: backend-app
+  labels:
+    name: backend
+    release: prometheus
 spec:
   replicas: 3
   selector:
@@ -17,24 +20,30 @@ spec:
         image: emekamomodu/backend-metrics-dashboard-cnand:latest
         imagePullPolicy: Always
         ports:
-        - containerPort: 8081
+          - name: backendport
+            containerPort: 8080
+            protocol: TCP
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: backend-service
+  labels:
+    app: backend
 spec:
   selector:
     app: backend
   ports:
-    - port: 8081
-      targetPort: 8080
+    - name: backend
+      protocol: TCP
+      port: 8081
+      targetPort: backendport
   type: LoadBalancer
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: backend
+  name: backend-service-monitor
   namespace: monitoring
   labels:
     app: backend

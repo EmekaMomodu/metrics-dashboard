@@ -2,6 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend-app
+  labels:
+    name: frontend
+    release: prometheus
 spec:
   replicas: 3
   selector:
@@ -17,24 +20,30 @@ spec:
           image: emekamomodu/frontend-metrcs-dashboard-cnand:latest
           imagePullPolicy: Always
           ports:
-            - containerPort: 8083
+            - name: frontendport
+              containerPort: 8080
+              protocol: TCP
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: frontend-service
+  labels:
+    app: frontend
 spec:
   selector:
     app: frontend
   ports:
-    - port: 8083
-      targetPort: 8083
+    - name: frontend
+      protocol: TCP
+      port: 8083
+      targetPort: frontendport
   type: LoadBalancer
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: frontend
+  name: frontend-service-monitor
   namespace: monitoring
   labels:
     app: frontend
