@@ -13,6 +13,7 @@ from opentelemetry.sdk.trace.export import (
     ConsoleSpanExporter,
     SimpleExportSpanProcessor,
 )
+import logging
 
 trace.set_tracer_provider(TracerProvider())
 trace.get_tracer_provider().add_span_processor(
@@ -24,13 +25,13 @@ FlaskInstrumentor().instrument_app(app)
 RequestsInstrumentor().instrument()
 
 
-#config = Config(
+# config = Config(
 #        config={},
 #        service_name='your-app-name',
 #        validate=True,
 #        metrics_factory=PrometheusMetricsFactory(service_name_label='your-app-name')
-#)
-#tracer = config.initialize_tracer()
+# )
+# tracer = config.initialize_tracer()
 
 def init_tracer(service):
     logging.getLogger('').handlers = []
@@ -50,7 +51,9 @@ def init_tracer(service):
     # this call also sets opentracing.tracer
     return config.initialize_tracer()
 
+
 tracer = init_tracer('first-service')
+
 
 @app.route('/')
 def homepage():
@@ -64,10 +67,9 @@ def homepage():
                 homepages.append(requests.get(result['company_url']))
             except:
                 return "Unable to get site for %s" % result['company']
-        
-
 
     return jsonify(homepages)
 
+
 if __name__ == "__main__":
-    app.run(debug=True,)
+    app.run(debug=True, )
