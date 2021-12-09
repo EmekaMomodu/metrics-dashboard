@@ -1,3 +1,4 @@
+import requests
 from flask import Flask, render_template, request, jsonify
 
 from jaeger_client import Config
@@ -14,6 +15,7 @@ from opentelemetry.sdk.trace.export import (
     SimpleExportSpanProcessor,
 )
 import logging
+from prometheus_flask_exporter.multiprocess import GunicornInternalPrometheusMetrics
 
 trace.set_tracer_provider(TracerProvider())
 trace.get_tracer_provider().add_span_processor(
@@ -23,6 +25,10 @@ trace.get_tracer_provider().add_span_processor(
 app = Flask(__name__)
 FlaskInstrumentor().instrument_app(app)
 RequestsInstrumentor().instrument()
+
+metrics = GunicornInternalPrometheusMetrics(app)
+# static information as metric
+metrics.info('trial_app_info', 'Trial Application info', version='1.0.0')
 
 
 # config = Config(
@@ -57,7 +63,7 @@ tracer = init_tracer('first-service')
 
 @app.route('/')
 def homepage():
-    return render_template("main.html")
+    # return render_template("main.html")
     with tracer.start_span('get-python-jobs') as span:
         homepages = []
         res = requests.get('https://jobs.github.com/positions.json?description=python')
