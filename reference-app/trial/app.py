@@ -45,7 +45,7 @@ def init_tracer(service):
     return config.initialize_tracer()
 
 
-tracer = init_tracer('trial')
+tracer = init_tracer('trial-service')
 
 # Trial App
 app = Flask(__name__)
