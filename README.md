@@ -53,7 +53,7 @@ the amount of cpu utilisation of the service.
 
 [Here is the python file](reference-app/backend/app.py) for the Jaeger span code.
 
-[Jaeger Span measuring the processes of the Backend Service Image](https://github.com/EmekaMomodu/metrics-dashboard/blob/main/answer-img/Jaeger-Span-of-the-Backend-Service.png "Jaeger Span measuring the processes of the Backend Service")
+![Jaeger Span measuring the processes of the Backend Service Image](https://github.com/EmekaMomodu/metrics-dashboard/blob/main/answer-img/Jaeger-Span-of-the-Backend-Service.png "Jaeger Span measuring the processes of the Backend Service")
 
 ## Jaeger in Dashboards
 *TODO:* Now that the trace is running, let's add the metric to our current Grafana dashboard. Once this is completed, provide a screenshot of it here.
