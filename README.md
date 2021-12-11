@@ -60,21 +60,23 @@ the amount of cpu utilisation of the service.
 ![Jaeger Traces on Grafana Dashboard Image](https://github.com/EmekaMomodu/metrics-dashboard/blob/main/answer-img/jaeger-traces-on-grafana-dashboard.png "Jaeger Traces on Grafana Dashboard")
 
 ## Report Error
-*TODO:* Using the template below, write a trouble ticket for the developers, to explain the errors that you are seeing (400, 500, latency) and to let them know the file that is causing the issue.
+*DONE:* Using the template below, write a trouble ticket for the developers, to explain the errors that you are seeing (400, 500, latency) and to let them know the file that is causing the issue.
 
 TROUBLE TICKET
 
-Name:
+Name: Http Response 500 on backend-service endpoint /api
 
-Date:
+Date: December 11, 2021, 14:51:50 GMT+1
 
-Subject:
+Subject: Http Error Response 500 on backend-service endpoint /api, failed to resolve
 
-Affected Area:
+Affected Area:  File path: "./reference-app/backend/app.py", 
+                error line:  89, 
+                function: my_api
 
-Severity:
+Severity: High
 
-Description:
+Description: class 'NameError' error  - name 'error' is not defined
 
 
 ## Creating SLIs and SLOs
