@@ -49,7 +49,11 @@ the amount of cpu utilisation of the service.
 ![Uptime, 40x, and 50x Errors of Frontend and Backend Services Image](https://github.com/EmekaMomodu/metrics-dashboard/blob/main/answer-img/uptime-40x-50x-errors.png "Uptime, 40x, and 50x Errors of Frontend and Backend Services")
 
 ## Tracing our Flask App
-*TODO:*  We will create a Jaeger span to measure the processes on the backend. Once you fill in the span, provide a screenshot of it here.
+*DONE:*  We will create a Jaeger span to measure the processes on the backend. Once you fill in the span, provide a screenshot of it here.
+
+[Here is the python file](reference-app/backend/app.py) for the Jaeger span code.
+
+[Jaeger Span measuring the processes of the Backend Service Image](https://github.com/EmekaMomodu/metrics-dashboard/blob/main/answer-img/Jaeger-Span-of-the-Backend-Service.png "Jaeger Span measuring the processes of the Backend Service")
 
 ## Jaeger in Dashboards
 *TODO:* Now that the trace is running, let's add the metric to our current Grafana dashboard. Once this is completed, provide a screenshot of it here.
