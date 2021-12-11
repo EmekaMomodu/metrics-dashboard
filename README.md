@@ -78,12 +78,60 @@ Severity: High
 
 Description: class 'NameError' error  - name 'error' is not defined
 
+![Error shown in jaeger trace Image](https://github.com/EmekaMomodu/metrics-dashboard/blob/main/answer-img/Error-shown-in-jaeger-trace.png "Error shown in jaeger trace")
+
 
 ## Creating SLIs and SLOs
-*TODO:* We want to create an SLO guaranteeing that our application has a 99.95% uptime per month. Name three SLIs that you would use to measure the success of this SLO.
+*DONE:* We want to create an SLO guaranteeing that our application has a 99.95% uptime per month. Name three SLIs that you would use to measure the success of this SLO.
+
+1. Latency
+2. Errors
+3. Saturation
 
 ## Building KPIs for our plan
-*TODO*: Now that we have our SLIs and SLOs, create KPIs to accurately measure these metrics. We will make a dashboard for this, but first write them down here.
+*DONE*: Now that we have our SLIs and SLOs, create KPIs to accurately measure these metrics. We will make a dashboard for this, but first write them down here.
+
+### 2-3 KPIs per SLI
+
+**Latency**
+- request time (in ms) for successful requests
+- request time (in ms) for failed requests
+- round trip request time in network - using ping and traceroute
+
+**Errors** : It is important to understand what kind of errors are happening in the application. This can be done with Jaeger Tracing.
+- 500 errors - 500 errors are more severe: the application is unable to start or completely crashes during execution of a request.
+- 400 errors - 404 errors are less severe but also need urgent attention.
+- What percentage of overall requests result in 200 as opposed to 400 or 500 errors
+
+**Saturation**
+- % CPU usage allocated per service as configured in yaml for example
+- % CPU usage available on host
+- Total number of requests received over time. Are there spikes in usage?
+
+### Example PromQL Queries for Some Metrics.
+
+**Response types : Flask HTTP requests status 200, 500, 400**
+- sum(flask_http_request_total{container=~"backend-app|frontend-app|trial-app",status=~"500"}) by (status,container)
+- sum(flask_http_request_total{container=~"backend-app|frontend-app|trial-app",status=~"400"}) by (status,container)
+- sum(flask_http_request_total{container=~"backend-app|frontend-app|trial-app",status=~"200"}) by (status,container)
+
+**Failed responses per second**
+- sum(rate(flask_http_request_duration_seconds_count{status!="200"}[30s]))
+
+**Uptime : frontend, trial, backend**
+- sum(up{container=~"frontend-app"}) by (pod)
+- sum(up{container=~"trial-app"}) by (pod)
+- sum(up{container=~"backend-app"}) by (pod)
+
+**Pods health : Pods not ready**
+- sum by (namespace) (kube_pod_status_ready{condition="false"})
+
+**Pods health : Pod restarts by namespace**
+- sum by (namespace)(changes(kube_pod_status_ready{condition="true"}[5m]))
+
+**Average Response time (Latency)**
+- rate(flask_http_request_duration_seconds_sum{status="200"}[1d])/rate(flask_http_request_duration_seconds_count{status="200"}[1d])
+
 
 ## Final Dashboard
 *TODO*: Create a Dashboard containing graphs that capture all the metrics of your KPIs and adequately representing your SLIs and SLOs. Include a screenshot of the dashboard here, and write a text description of what graphs are represented in the dashboard.  
