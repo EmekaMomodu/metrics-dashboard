@@ -56,7 +56,8 @@ the amount of cpu utilisation of the service.
 ![Jaeger Span measuring the processes of the Backend Service Image](https://github.com/EmekaMomodu/metrics-dashboard/blob/main/answer-img/Jaeger-Span-of-the-Backend-Service.png "Jaeger Span measuring the processes of the Backend Service")
 
 ## Jaeger in Dashboards
-*TODO:* Now that the trace is running, let's add the metric to our current Grafana dashboard. Once this is completed, provide a screenshot of it here.
+*DONE:* Now that the trace is running, let's add the metric to our current Grafana dashboard. Once this is completed, provide a screenshot of it here.
+![Jaeger Traces on Grafana Dashboard Image](https://github.com/EmekaMomodu/metrics-dashboard/blob/main/answer-img/jaeger-traces-on-grafana-dashboard.png "Jaeger Traces on Grafana Dashboard")
 
 ## Report Error
 *TODO:* Using the template below, write a trouble ticket for the developers, to explain the errors that you are seeing (400, 500, latency) and to let them know the file that is causing the issue.
