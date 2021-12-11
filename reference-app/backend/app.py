@@ -16,6 +16,8 @@ from opentelemetry.instrumentation.requests import RequestsInstrumentor
 from opentelemetry.sdk.resources import SERVICE_NAME, Resource
 from opentelemetry.sdk.trace.export import ConsoleSpanExporter
 from prometheus_flask_exporter.multiprocess import GunicornInternalPrometheusMetrics
+# from os import getenv
+# JAEGER_HOST = getenv('JAEGER_HOST', 'localhost')
 
 
 # Configure Jaeger tracer
@@ -30,6 +32,7 @@ def init_tracer(service):
                 'param': 1,
             },
             'logging': True,
+            # 'local_agent': {'reporting_host': JAEGER_HOST}
         },
         service_name=service,
         validate=True
@@ -39,7 +42,7 @@ def init_tracer(service):
     return config.initialize_tracer()
 
 
-tracer = init_tracer('backend')
+tracer = init_tracer('backend-service')
 
 app = Flask(__name__)
 
