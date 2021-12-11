@@ -86,7 +86,7 @@ def homepage():
 @endpoint_counter
 def my_api():
     with tracer.start_span('my-api'):
-        answer = "something"
+        answer = error  # Error line
         return jsonify(response=answer)
 
 
