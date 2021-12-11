@@ -96,7 +96,6 @@ Description: class 'NameError' error  - name 'error' is not defined
 **Latency**
 - request time (in ms) for successful requests
 - request time (in ms) for failed requests
-- round trip request time in network - using ping and traceroute
 
 **Errors** : It is important to understand what kind of errors are happening in the application. This can be done with Jaeger Tracing.
 - 500 errors - 500 errors are more severe: the application is unable to start or completely crashes during execution of a request.
@@ -111,17 +110,17 @@ Description: class 'NameError' error  - name 'error' is not defined
 ### Example PromQL Queries for Some Metrics.
 
 **Response types : Flask HTTP requests status 200, 500, 400**
-- sum(flask_http_request_total{container=~"backend-app|frontend-app|trial-app",status=~"500"}) by (status,container)
-- sum(flask_http_request_total{container=~"backend-app|frontend-app|trial-app",status=~"400"}) by (status,container)
-- sum(flask_http_request_total{container=~"backend-app|frontend-app|trial-app",status=~"200"}) by (status,container)
+- sum(flask_http_request_total{container=~"backend|frontend|trial",status=~"500|503"}) by (status,container)
+- sum(flask_http_request_total{container=~"backend|frontend|trial",status=~"403|404"}) by (status,container)
+- sum(flask_http_request_total{container=~"backend|frontend|trial",status=~"200"}) by (status,container)
 
 **Failed responses per second**
 - sum(rate(flask_http_request_duration_seconds_count{status!="200"}[30s]))
 
 **Uptime : frontend, trial, backend**
-- sum(up{container=~"frontend-app"}) by (pod)
-- sum(up{container=~"trial-app"}) by (pod)
-- sum(up{container=~"backend-app"}) by (pod)
+- sum(up{container=~"frontend"}) by (pod)
+- sum(up{container=~"trial"}) by (pod)
+- sum(up{container=~"backend"}) by (pod)
 
 **Pods health : Pods not ready**
 - sum by (namespace) (kube_pod_status_ready{condition="false"})
@@ -134,4 +133,23 @@ Description: class 'NameError' error  - name 'error' is not defined
 
 
 ## Final Dashboard
-*TODO*: Create a Dashboard containing graphs that capture all the metrics of your KPIs and adequately representing your SLIs and SLOs. Include a screenshot of the dashboard here, and write a text description of what graphs are represented in the dashboard.  
+*DONE*: Create a Dashboard containing graphs that capture all the metrics of your KPIs and adequately representing your SLIs and SLOs. Include a screenshot of the dashboard here, and write a text description of what graphs are represented in the dashboard.
+Panels listed are :
+- Flask HTTP request total: Status 200
+- Flask HTTP request exceptions
+- 5xx Errors
+- 4xx Errors
+- Failed responses per second
+- Uptime Frontend Service
+- Uptime Backend Service
+- Uptime Trial Service
+- Pods not in ready state
+- Pod restarts per namespace
+- CPU Usage
+- Latency: Average response time
+
+![Final Dashboard 1 Image](https://github.com/EmekaMomodu/metrics-dashboard/blob/main/answer-img/Final-Dashboard-1.png "Final Dashboard 1")
+
+![Final Dashboard 2 Image](https://github.com/EmekaMomodu/metrics-dashboard/blob/main/answer-img/Final-Dashboard-2.png "Final Dashboard 2")
+
+
